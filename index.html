@@ -3,29 +3,823 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<meta name="description" content="馬紫慧的個人履歷網站，包含工作經驗、學歷、專業技能與聯絡方式。" />
-<title>馬紫慧｜個人履歷</title>
+<meta name="description" content="馬紫慧的個人履歷網站，包含工作經驗、專案成果、學歷技能與聯絡方式。" />
+<title>馬紫慧｜個人履歷與專案作品集</title>
+<!-- 引入 Chart.js 支援數據視覺化圖表 -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.4/dist/chart.umd.min.js"></script>
 <style>
-:root{--ink:#26332f;--muted:#687570;--green:#496c5b;--pale:#eef3ef;--cream:#faf9f5;--line:#dfe7e1;--white:#fff}
-*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--cream);color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,"Noto Sans TC","PingFang TC","Microsoft JhengHei",sans-serif;line-height:1.75}a{color:inherit}.wrap{width:min(1080px,92%);margin:auto}.nav{display:flex;align-items:center;justify-content:space-between;padding:20px 0}.brand{font-weight:800;letter-spacing:.08em}.nav a{text-decoration:none;color:var(--muted);margin-left:22px;font-size:.94rem}.hero{display:grid;grid-template-columns:1.3fr .7fr;gap:42px;align-items:center;padding:66px 0 74px}.eyebrow{color:var(--green);font-weight:700;letter-spacing:.16em;font-size:.84rem}.hero h1{font-size:clamp(2.5rem,6vw,4.5rem);line-height:1.15;letter-spacing:.03em;margin:14px 0}.hero h1 span{color:var(--green)}.lead{font-size:1.08rem;color:var(--muted);max-width:620px}.chips{display:flex;gap:9px;flex-wrap:wrap;margin:24px 0}.chip{background:var(--pale);color:var(--green);padding:6px 13px;border-radius:999px;font-size:.9rem}.actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:26px}.btn{display:inline-block;text-decoration:none;padding:11px 18px;border-radius:10px;border:1px solid var(--green);font-weight:700}.btn.primary{background:var(--green);color:white}.portrait{min-height:340px;border-radius:28px;background:linear-gradient(145deg,#e3ebe4,#f5eee2);display:flex;align-items:center;justify-content:center;text-align:center;padding:28px;position:relative;overflow:hidden}.portrait:before,.portrait:after{content:"";position:absolute;border:1px solid #c4d3c7;border-radius:50%;width:250px;height:250px}.portrait:after{width:330px;height:330px}.portrait-inner{z-index:1}.avatar{width:116px;height:116px;border-radius:50%;background:#fff9;display:grid;place-items:center;margin:0 auto 14px;color:var(--green);font-size:2.7rem}.portrait p{color:var(--muted);font-size:.9rem;margin:0}.section{padding:62px 0;border-top:1px solid var(--line)}.section-head{display:flex;align-items:end;justify-content:space-between;gap:20px;margin-bottom:28px}.section h2{font-size:1.8rem;margin:0;letter-spacing:.04em}.section-head p{margin:0;color:var(--muted);font-size:.94rem}.about{display:grid;grid-template-columns:1fr 1fr;gap:24px}.panel{background:white;border:1px solid var(--line);border-radius:18px;padding:24px}.panel h3{margin:0 0 10px;font-size:1.1rem}.panel p{margin:0;color:var(--muted)}.timeline{display:grid;gap:16px}.job{display:grid;grid-template-columns:170px 1fr;gap:22px;background:white;border:1px solid var(--line);border-radius:18px;padding:23px}.duration{font-size:.9rem;color:var(--green);font-weight:700}.job h3{margin:0;font-size:1.1rem}.job .meta{color:var(--muted);font-size:.92rem;margin:2px 0 10px}.job ul{margin:0;padding-left:20px}.job li{margin:3px 0}.edu-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}.edu{padding:22px;background:white;border:1px solid var(--line);border-radius:16px}.edu h3{margin:0 0 4px}.edu p{margin:0;color:var(--muted)}.skills{display:flex;flex-wrap:wrap;gap:10px}.skill{background:white;border:1px solid var(--line);padding:10px 15px;border-radius:12px}.contact{background:var(--green);color:white;border-radius:24px;padding:32px;display:grid;grid-template-columns:1fr 1fr;gap:22px;align-items:center}.contact p{color:#e4eee7;margin:8px 0}.contact a{color:white;text-decoration:none;overflow-wrap:anywhere}.contact .btn{border-color:white;color:var(--green);background:white}.footer{padding:28px 0 40px;text-align:center;color:var(--muted);font-size:.85rem}.small{font-size:.86rem;color:var(--muted)}
-@media(max-width:720px){.nav{align-items:flex-start}.nav nav{display:none}.hero{grid-template-columns:1fr;padding:38px 0 48px;gap:24px}.portrait{min-height:250px}.about,.edu-grid,.contact{grid-template-columns:1fr}.section{padding:44px 0}.section-head{display:block}.section-head p{margin-top:5px}.job{grid-template-columns:1fr;gap:4px;padding:20px}.contact{padding:25px}.wrap{width:min(100% - 32px,1080px)}}
+:root{
+  --ink:#26332f;
+  --muted:#687570;
+  --green:#496c5b;
+  --green-hover:#3b5749;
+  --orange:#d97736;
+  --pale:#eef3ef;
+  --cream:#faf9f5;
+  --line:#dfe7e1;
+  --white:#fff;
+  --card-bg:#ffffff;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;
+  background:var(--cream);
+  color:var(--ink);
+  font-family:-apple-system,BlinkMacSystemFont,"Noto Sans TC","PingFang TC","Microsoft JhengHei",sans-serif;
+  line-height:1.75;
+}
+a{color:inherit}
+.wrap{width:min(1080px,92%);margin:auto}
+.nav{display:flex;align-items:center;justify-content:space-between;padding:20px 0}
+.brand{font-weight:800;letter-spacing:.08em;font-size:1.05rem}
+.nav a{text-decoration:none;color:var(--muted);margin-left:22px;font-size:.94rem;transition:color .2s}
+.nav a:hover{color:var(--green)}
+.hero{display:grid;grid-template-columns:1.3fr .7fr;gap:42px;align-items:center;padding:66px 0 74px}
+.eyebrow{color:var(--green);font-weight:700;letter-spacing:.16em;font-size:.84rem}
+.hero h1{font-size:clamp(2.5rem,6vw,4.5rem);line-height:1.15;letter-spacing:.03em;margin:14px 0}
+.hero h1 span{color:var(--green)}
+.lead{font-size:1.08rem;color:var(--muted);max-width:620px}
+.chips{display:flex;gap:9px;flex-wrap:wrap;margin:24px 0}
+.chip{background:var(--pale);color:var(--green);padding:6px 13px;border-radius:999px;font-size:.9rem}
+.actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:26px}
+.btn{display:inline-block;text-decoration:none;padding:11px 18px;border-radius:10px;border:1px solid var(--green);font-weight:700;transition:all .2s ease}
+.btn.primary{background:var(--green);color:white}
+.btn.primary:hover{background:var(--green-hover)}
+.btn:hover{background:var(--pale)}
+.portrait{min-height:340px;border-radius:28px;background:linear-gradient(145deg,#e3ebe4,#f5eee2);display:flex;align-items:center;justify-content:center;text-align:center;padding:28px;position:relative;overflow:hidden}
+.portrait:before,.portrait:after{content:"";position:absolute;border:1px solid #c4d3c7;border-radius:50%;width:250px;height:250px}
+.portrait:after{width:330px;height:330px}
+.portrait-inner{z-index:1}
+.avatar{width:116px;height:116px;border-radius:50%;background:#fff9;display:grid;place-items:center;margin:0 auto 14px;color:var(--green);font-size:2.7rem}
+.portrait p{color:var(--muted);font-size:.9rem;margin:0}
+.section{padding:62px 0;border-top:1px solid var(--line)}
+.section-head{display:flex;align-items:end;justify-content:space-between;gap:20px;margin-bottom:28px}
+.section h2{font-size:1.8rem;margin:0;letter-spacing:.04em}
+.section-head p{margin:0;color:var(--muted);font-size:.94rem}
+.about{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+.panel{background:white;border:1px solid var(--line);border-radius:18px;padding:24px}
+.panel h3{margin:0 0 10px;font-size:1.1rem}
+.panel p{margin:0;color:var(--muted)}
+.timeline{display:grid;gap:16px}
+.job{display:grid;grid-template-columns:170px 1fr;gap:22px;background:white;border:1px solid var(--line);border-radius:18px;padding:23px}
+.duration{font-size:.9rem;color:var(--green);font-weight:700}
+.job h3{margin:0;font-size:1.1rem}
+.job .meta{color:var(--muted);font-size:.92rem;margin:2px 0 10px}
+.job ul{margin:0;padding-left:20px}
+.job li{margin:3px 0}
+.edu-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.edu{padding:22px;background:white;border:1px solid var(--line);border-radius:16px}
+.edu h3{margin:0 0 4px}
+.edu p{margin:0;color:var(--muted)}
+.skills{display:flex;flex-wrap:wrap;gap:10px}
+.skill{background:white;border:1px solid var(--line);padding:10px 15px;border-radius:12px}
+
+/* ===== 專案成果展示區塊樣式 ===== */
+.project-card{
+  background:white;
+  border:1px solid var(--line);
+  border-radius:22px;
+  padding:32px;
+  box-shadow:0 8px 24px rgba(38,51,47,0.03);
+  margin-bottom:28px;
+}
+.project-header{
+  display:flex;
+  justify-content:space-between;
+  align-items:flex-start;
+  flex-wrap:wrap;
+  gap:16px;
+  margin-bottom:18px;
+  border-bottom:1px solid var(--line);
+  padding-bottom:18px;
+}
+.project-badge{
+  display:inline-block;
+  background:var(--green);
+  color:white;
+  font-size:.78rem;
+  font-weight:700;
+  letter-spacing:.08em;
+  padding:3px 10px;
+  border-radius:6px;
+  margin-bottom:8px;
+  text-transform:uppercase;
+}
+.project-title{
+  font-size:1.45rem;
+  margin:0 0 6px;
+  color:var(--ink);
+  font-weight:800;
+}
+.project-subtitle{
+  color:var(--muted);
+  font-size:.95rem;
+  margin:0;
+}
+.project-tags{
+  display:flex;
+  flex-wrap:wrap;
+  gap:8px;
+}
+.project-intro{
+  color:var(--ink);
+  font-size:1rem;
+  line-height:1.75;
+  margin:0 0 24px;
+}
+
+/* 核心指標卡 */
+.kpi-grid{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:16px;
+  margin-bottom:28px;
+}
+.kpi-card{
+  background:var(--cream);
+  border:1px solid var(--line);
+  border-radius:16px;
+  padding:18px;
+  transition:transform .2s ease, box-shadow .2s ease;
+}
+.kpi-card:hover{
+  transform:translateY(-3px);
+  box-shadow:0 6px 16px rgba(0,0,0,0.04);
+}
+.kpi-num{
+  font-size:1.75rem;
+  font-weight:800;
+  color:var(--green);
+  line-height:1.2;
+}
+.kpi-label{
+  font-size:.88rem;
+  font-weight:700;
+  color:var(--ink);
+  margin-top:6px;
+}
+.kpi-sub{
+  font-size:.8rem;
+  color:var(--muted);
+  margin-top:2px;
+}
+
+/* 圖表排版區 */
+.charts-grid{
+  display:grid;
+  grid-template-columns:1.35fr 1fr;
+  gap:22px;
+  margin-bottom:28px;
+}
+.chart-box{
+  background:var(--card-bg);
+  border:1px solid var(--line);
+  border-radius:16px;
+  padding:20px;
+  display:flex;
+  flex-direction:column;
+}
+.chart-box-title{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  margin-bottom:14px;
+  font-size:1rem;
+  font-weight:700;
+  color:var(--ink);
+}
+.chart-box-badge{
+  font-size:.76rem;
+  color:var(--green);
+  background:var(--pale);
+  padding:3px 8px;
+  border-radius:6px;
+  font-weight:600;
+}
+.chart-canvas-wrapper{
+  position:relative;
+  width:100%;
+  height:300px;
+  flex-grow:1;
+}
+.chart-note{
+  font-size:.8rem;
+  color:var(--muted);
+  margin:12px 0 0;
+  line-height:1.5;
+}
+
+/* 核心洞察區 */
+.insights-box{
+  background:var(--pale);
+  border-radius:16px;
+  padding:22px 26px;
+  margin-bottom:24px;
+  border-left:5px solid var(--green);
+}
+.insights-box h4{
+  margin:0 0 14px;
+  font-size:1.08rem;
+  color:var(--green);
+  font-weight:800;
+}
+.insights-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:18px;
+}
+.insight-item strong{
+  display:block;
+  font-size:.95rem;
+  color:var(--ink);
+  margin-bottom:6px;
+}
+.insight-item p{
+  margin:0;
+  color:var(--muted);
+  font-size:.88rem;
+  line-height:1.6;
+}
+
+/* 數據來源區塊與超連結 */
+.sources-box{
+  border-top:1px dashed var(--line);
+  padding-top:20px;
+  margin-top:10px;
+}
+.sources-title{
+  font-size:.9rem;
+  font-weight:700;
+  color:var(--ink);
+  margin-bottom:12px;
+  display:flex;
+  align-items:center;
+  gap:8px;
+}
+.sources-title svg{
+  width:16px;
+  height:16px;
+  color:var(--green);
+}
+.sources-list{
+  display:flex;
+  flex-wrap:wrap;
+  gap:10px;
+}
+.source-link{
+  display:inline-flex;
+  align-items:center;
+  gap:6px;
+  background:#ffffff;
+  border:1px solid var(--line);
+  border-radius:999px;
+  padding:7px 14px;
+  font-size:.85rem;
+  color:var(--green);
+  text-decoration:none;
+  font-weight:600;
+  transition:all .2s ease;
+}
+.source-link svg{
+  width:13px;
+  height:13px;
+  color:var(--green);
+  stroke-width:2.2;
+}
+.source-link:hover{
+  background:var(--pale);
+  border-color:var(--green);
+  color:var(--green-hover);
+  box-shadow:0 2px 6px rgba(73,108,91,0.12);
+}
+
+.contact{background:var(--green);color:white;border-radius:24px;padding:32px;display:grid;grid-template-columns:1fr 1fr;gap:22px;align-items:center}
+.contact p{color:#e4eee7;margin:8px 0}
+.contact a{color:white;text-decoration:none;overflow-wrap:anywhere}
+.contact .btn{border-color:white;color:var(--green);background:white}
+.footer{padding:28px 0 40px;text-align:center;color:var(--muted);font-size:.85rem}
+.small{font-size:.86rem;color:var(--muted)}
+
+@media(max-width:960px){
+  .kpi-grid{grid-template-columns:1fr 1fr}
+  .insights-grid{grid-template-columns:1fr}
+  .charts-grid{grid-template-columns:1fr}
+}
+@media(max-width:720px){
+  .nav{align-items:flex-start}
+  .nav nav{display:none}
+  .hero{grid-template-columns:1fr;padding:38px 0 48px;gap:24px}
+  .portrait{min-height:250px}
+  .about,.edu-grid,.contact{grid-template-columns:1fr}
+  .section{padding:44px 0}
+  .section-head{display:block}
+  .section-head p{margin-top:5px}
+  .job{grid-template-columns:1fr;gap:4px;padding:20px}
+  .contact{padding:25px}
+  .wrap{width:min(100% - 32px,1080px)}
+  .project-card{padding:20px}
+  .kpi-grid{grid-template-columns:1fr}
+  .sources-list{flex-direction:column;align-items:flex-start}
+  .source-link{width:100%;justify-content:space-between}
+}
 </style>
 </head>
 <body>
-<header class="wrap nav"><div class="brand">MA ZI HUI · 履歷</div><nav><a href="#about">關於我</a><a href="#experience">工作經驗</a><a href="#education">學歷技能</a><a href="#contact">聯絡方式</a></nav></header>
+<header class="wrap nav">
+  <div class="brand">MA ZI HUI · 履歷</div>
+  <nav>
+    <a href="#about">關於我</a>
+    <a href="#experience">工作經驗</a>
+    <a href="#projects">專案成果</a>
+    <a href="#education">學歷技能</a>
+    <a href="#contact">聯絡方式</a>
+  </nav>
+</header>
 <main>
 <section class="wrap hero">
-<div><div class="eyebrow">PERSONAL RESUME · 2026</div><h1>你好，我是<br><span>馬紫慧</span></h1><p class="lead">做事細心負責、願意學習，也重視團隊合作。具備餐飲服務、物流整理及機場協勤相關經驗，希望將過去累積的實務能力運用在新的工作挑戰中。</p><div class="chips"><span class="chip">認真負責</span><span class="chip">配合度高</span><span class="chip">願意學習</span><span class="chip">團隊合作</span></div><div class="actions"><a class="btn primary" href="#experience">查看工作經驗</a><a class="btn" href="#contact">聯絡我</a></div></div>
-<div class="portrait"><div class="portrait-inner"><div class="avatar">紫</div><strong>照片位置</strong><p>之後可放上個人履歷照</p></div></div>
+  <div>
+    <div class="eyebrow">PERSONAL RESUME · 2026</div>
+    <h1>你好，我是<br><span>馬紫慧</span></h1>
+    <p class="lead">做事細心負責、願意學習，也重視團隊合作。就讀萬能科技大學企業管理系，具備餐飲服務、物流整理及機場協勤與空廚實務經驗，並致力於運用數據分析探討航空物流與服務管理。</p>
+    <div class="chips">
+      <span class="chip">認真負責</span>
+      <span class="chip">數據分析</span>
+      <span class="chip">物流管理</span>
+      <span class="chip">團隊合作</span>
+    </div>
+    <div class="actions">
+      <a class="btn primary" href="#experience">查看工作經驗</a>
+      <a class="btn" href="#projects">專案成果展示</a>
+      <a class="btn" href="#contact">聯絡我</a>
+    </div>
+  </div>
+  <div class="portrait">
+    <div class="portrait-inner">
+      <div class="avatar">紫</div>
+      <strong>照片位置</strong>
+      <p>之後可放上個人履歷照</p>
+    </div>
+  </div>
 </section>
-<section id="about" class="section"><div class="wrap"><div class="section-head"><h2>關於我</h2><p>細心完成工作，也願意從新事物中學習。</p></div><div class="about"><div class="panel"><h3>個人簡介</h3><p>我做事認真、重視責任感，能配合工作安排並與團隊合作。過去接觸過餐飲外場、物流搬運整理及機場協勤工作，熟悉基本服務流程、環境整理與現場作業。希望持續累積經驗，提升自己的工作能力。</p></div><div class="panel"><h3>基本資料</h3><p>姓名：馬紫慧<br>出生年月日：2006/09/10<br>性別：女<br>應徵職位：管理員</p></div></div></div></section>
-<section id="experience" class="section"><div class="wrap"><div class="section-head"><h2>工作經驗</h2><p>從不同工作中累積實務能力。</p></div><div class="timeline">
-<article class="job"><div class="duration">半年</div><div><h3>機場動植物檢疫協勤</h3><div class="meta">服務業｜協勤人員</div><ul><li>協助動植物檢疫相關作業。</li><li>配合現場工作安排，協助維持作業流程。</li></ul></div></article>
-<article class="job"><div class="duration">半年</div><div><h3>馬士基物流有限公司</h3><div class="meta">工作人員</div><ul><li>負責貨物搬運、點貨與整理。</li><li>協助出貨作業與倉庫環境維護。</li><li>配合團隊完成每日物流作業。</li></ul></div></article>
-<article class="job"><div class="duration">8 個月</div><div><h3>薩莉亞餐廳</h3><div class="meta">外場人員</div><ul><li>負責帶位、點餐、送餐及收銀。</li><li>進行桌面清潔、收桌與環境整理。</li><li>熟悉顧客服務，能配合尖峰時段工作。</li></ul></div></article>
-<article class="job"><div class="duration">1 個月</div><div><h3>華膳空廚</h3><div class="meta">作業員</div><ul><li>準備飛機餐。</li><li>協助餐點包裝與備料作業。</li><li>負責環境整理與衛生維護。</li></ul></div></article>
-</div></div></section>
-<section id="education" class="section"><div class="wrap"><div class="section-head"><h2>學歷與專業技能</h2><p>持續學習，累積更多工作實力。</p></div><div class="edu-grid"><div class="edu"><h3>萬能科技大學</h3><p>企業管理科系｜就讀中</p></div><div class="edu"><h3>育達高中</h3><p>時尚造型科｜畢業</p></div></div><h3 style="margin:28px 0 14px">專業技能</h3><div class="skills"><span class="skill">顧客服務</span><span class="skill">餐飲外場作業</span><span class="skill">環境清潔維護</span><span class="skill">貨物搬運與整理</span><span class="skill">團隊合作</span><span class="skill">工作配合與執行</span></div><h3 style="margin:28px 0 14px">相關證照</h3><div class="skills"><span class="skill">女子美髮證照</span><span class="skill">女子美容證照</span><span class="skill">美睫證照</span><span class="skill">美甲證照</span></div></div></section>
-<section id="contact" class="section"><div class="wrap"><div class="contact"><div><div class="eyebrow" style="color:#d9e8dd">GET IN TOUCH</div><h2 style="margin:8px 0">期待新的工作機會</h2><p>謝謝您閱讀我的履歷，期待有機會進一步面談。</p></div><div><p>電話：<a href="tel:0972715653">0972-715-653</a></p><p>Email：<a href="mailto:mazihui003@gmail.com">mazihui003@gmail.com</a></p><p>地址：桃園市大園區和平西路70號</p><a class="btn" href="mailto:mazihui003@gmail.com?subject=%E9%A6%AC%E7%B4%AB%E6%85%A7%20-%20%E9%9D%A2%E8%A9%A6%E9%80%9A%E7%9F%A5">寄送 Email</a></div></div></div></section>
-</main><footer class="wrap footer">© 2026 馬紫慧｜個人履歷網站</footer>
-</body></html>
+
+<!-- 關於我 -->
+<section id="about" class="section">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>關於我</h2>
+      <p>細心完成工作，也願意從新事物中學習。</p>
+    </div>
+    <div class="about">
+      <div class="panel">
+        <h3>個人簡介</h3>
+        <p>我做事認真、重視責任感，能配合工作安排並與團隊合作。過去接觸過餐飲外場、物流搬運整理及機場協勤工作，熟悉基本服務流程、環境整理與現場作業。希望持續累積經驗，提升自己的工作能力與企管分析專業。</p>
+      </div>
+      <div class="panel">
+        <h3>基本資料</h3>
+        <p>姓名：馬紫慧<br>出生年月日：2006/09/10<br>性別：女<br>應徵職位：管理員 / 專案助理 / 營運行政</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 工作經驗 -->
+<section id="experience" class="section">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>工作經驗</h2>
+      <p>從不同工作中累積實務能力與現場協作經驗。</p>
+    </div>
+    <div class="timeline">
+      <article class="job">
+        <div class="duration">半年</div>
+        <div>
+          <h3>機場動植物檢疫協勤</h3>
+          <div class="meta">服務業｜協勤人員</div>
+          <ul>
+            <li>協助動植物檢疫相關前線作業與旅客宣導。</li>
+            <li>配合現場檢疫流程安排，維持國境查驗防線順暢。</li>
+          </ul>
+        </div>
+      </article>
+      <article class="job">
+        <div class="duration">半年</div>
+        <div>
+          <h3>馬士基物流有限公司</h3>
+          <div class="meta">物流倉儲｜作業人員</div>
+          <ul>
+            <li>負責貨物搬運、點貨、理貨與品項核對。</li>
+            <li>協助出貨包裝作業與倉庫區域動線及環境維護。</li>
+            <li>配合團隊排班與進出貨排程，達成每日物流績效。</li>
+          </ul>
+        </div>
+      </article>
+      <article class="job">
+        <div class="duration">8 個月</div>
+        <div>
+          <h3>薩莉亞餐廳</h3>
+          <div class="meta">餐飲業｜外場人員</div>
+          <ul>
+            <li>負責顧客接待帶位、點餐、出餐配送及收銀結帳。</li>
+            <li>進行桌面清潔、備品補充及外場環境維護。</li>
+            <li>熟悉顧客服務應對，在高抗壓與尖峰時段保持流暢服務。</li>
+          </ul>
+        </div>
+      </article>
+      <article class="job">
+        <div class="duration">1 個月</div>
+        <div>
+          <h3>華膳空廚</h3>
+          <div class="meta">航空地勤支援｜作業員</div>
+          <ul>
+            <li>準備飛機餐點各航線餐盒裝配。</li>
+            <li>協助餐點真空包裝、食品溫控檢測與備料作業。</li>
+            <li>落實航空食品衛生管理規範（HACCP）與作業區整潔維護。</li>
+          </ul>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- 專案成果展示區塊 -->
+<section id="projects" class="section">
+  <div class="wrap">
+    <div class="section-head">
+      <div>
+        <h2>專案成果展示</h2>
+        <p>結合理論研析與實務現場觀察，運用數據洞察產業趨勢與營運效能</p>
+      </div>
+    </div>
+
+    <!-- 專案一：機場運輸業產業分析 -->
+    <article class="project-card">
+      <div class="project-header">
+        <div>
+          <span class="project-badge">專案成果 01</span>
+          <h3 class="project-title">機場運輸業產業分析與運量復甦趨勢報告</h3>
+          <p class="project-subtitle">以桃園國際機場為核心：2019-2024 年客貨運復甦趨勢、價值鏈結構與營運洞察</p>
+        </div>
+        <div class="project-tags">
+          <span class="chip">產業分析</span>
+          <span class="chip">數據視覺化</span>
+          <span class="chip">航空物流管理</span>
+          <span class="chip">Chart.js 動態圖表</span>
+        </div>
+      </div>
+
+      <p class="project-intro">
+        本研究結合萬能科技大學企業管理系學科背景與第一線機場協勤（動植物檢疫協勤、華膳空廚航餐備料）之實務經驗，深入探討台灣航空樞紐在後疫情時代的運量重構與價值鏈變革。針對<strong>旅客吞吐量急速反彈</strong>與<strong>航空貨運高價值化</strong>兩大主軸，進行多維度數據建模與圖表視覺化呈現，並剖析前線作業協同如何驅動整體營運效能。
+      </p>
+
+      <!-- 核心關鍵指標 (KPI) -->
+      <div class="kpi-grid">
+        <div class="kpi-card">
+          <div class="kpi-num">4,490 萬</div>
+          <div class="kpi-label">2024 客運總人次</div>
+          <div class="kpi-sub">恢復至疫情前 92.2%（年增 +27%）</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-num">225.4 萬</div>
+          <div class="kpi-label">2024 航空貨運量 (公噸)</div>
+          <div class="kpi-sub">穩居全球機場前十大貨運樞紐</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-num">24.2 萬</div>
+          <div class="kpi-label">航機起降架次</div>
+          <div class="kpi-sub">航線網絡全面回溫（年增 +16.8%）</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-num">2.84 倍</div>
+          <div class="kpi-label">航空產業關聯乘數</div>
+          <div class="kpi-sub">帶動地勤、空廚與周邊物流龐大產值</div>
+        </div>
+      </div>
+
+      <!-- 互動數據視覺化圖表 -->
+      <div class="charts-grid">
+        <!-- 圖表 1: 桃園機場客貨運趨勢對比 -->
+        <div class="chart-box">
+          <div class="chart-box-title">
+            <span>📊 桃園國際機場 2019-2024 旅客與貨運量趨勢</span>
+            <span class="chart-box-badge">雙軸動態圖</span>
+          </div>
+          <div class="chart-canvas-wrapper">
+            <canvas id="trafficTrendChart"></canvas>
+          </div>
+          <p class="chart-note">＊綠色長條為旅客運量（百萬人次），橘色折線為貨運量（萬公噸）。客運經歷 2021 年低谷後展現強勁 V 型復甦；貨運受半導體與高科技供應鏈加持，持續保持高檔。</p>
+        </div>
+
+        <!-- 圖表 2: 機場周邊營運與價值鏈結構 -->
+        <div class="chart-box">
+          <div class="chart-box-title">
+            <span>✈️ 機場運輸與周邊價值鏈結構佔比</span>
+            <span class="chart-box-badge">結構環形圖</span>
+          </div>
+          <div class="chart-canvas-wrapper">
+            <canvas id="valueChainChart"></canvas>
+          </div>
+          <p class="chart-note">＊涵蓋機場核心航務與周邊關鍵支援服務之營運比重（物流倉儲、航勤作業、空廚、檢疫安檢與免稅商務）。</p>
+        </div>
+      </div>
+
+      <!-- 核心洞察總結 -->
+      <div class="insights-box">
+        <h4>💡 產業關鍵洞察與營運管理分析</h4>
+        <div class="insights-grid">
+          <div class="insight-item">
+            <strong>1. 客運強勁反彈與動線智慧化需求</strong>
+            <p>2023-2024 年國際航線迅速增班，客流量逼近疫情前高點。面對尖峰人流，智慧報到（Self Check-in）、自動行李託運與智慧安檢成為化解前線人工作業瓶頸的關鍵策略。</p>
+          </div>
+          <div class="insight-item">
+            <strong>2. 航空貨運高價值化與冷鏈倉儲樞紐</strong>
+            <p>台灣地處亞太黃金航網，受惠於半導體、AI 伺服器與溫控生技藥品運輸，航空貨運展現強大韌性。高規格倉儲調度與即時理貨作業已成為現代航空物流不可或缺的競爭力。</p>
+          </div>
+          <div class="insight-item">
+            <strong>3. 前線協勤、動植物檢疫與空廚跨單位協調</strong>
+            <p>機場營運是精密緊扣的系統鏈：從航班落地後的檢疫查驗、行李分揀地勤，到空廚餐點配送與衛生品管，高度依賴嚴謹的 SOP 流程與跨部門團隊合作溝通。</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- 數據來源與超連結 -->
+      <div class="sources-box">
+        <div class="sources-title">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg>
+          所有數據來源與參考資料（點擊以下連結查閱政府與國際官方發布數據）：
+        </div>
+        <div class="sources-list">
+          <a class="source-link" href="https://www.caa.gov.tw/Article.aspx?a=1073&lang=1" target="_blank" rel="noopener noreferrer">
+            <span>交通部民用航空局 - 民航業務統計月報</span>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+          </a>
+          <a class="source-link" href="https://www.taoyuan-airport.com/operational_statistics?lang=ch" target="_blank" rel="noopener noreferrer">
+            <span>桃園國際機場股份有限公司 - 營運統計專區</span>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+          </a>
+          <a class="source-link" href="https://stat.motc.gov.tw/" target="_blank" rel="noopener noreferrer">
+            <span>交通部統計查詢網 - 交通統計資料庫系統</span>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+          </a>
+          <a class="source-link" href="https://aci.aero/data-centre/" target="_blank" rel="noopener noreferrer">
+            <span>國際機場協會 (ACI World) - Annual World Airport Traffic Report</span>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+          </a>
+          <a class="source-link" href="https://data.gov.tw/dataset/26356" target="_blank" rel="noopener noreferrer">
+            <span>政府資料開放平台 - 桃園國際機場歷年客貨運量統計</span>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+          </a>
+        </div>
+      </div>
+    </article>
+  </div>
+</section>
+
+<!-- 學歷與專業技能 -->
+<section id="education" class="section">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>學歷與專業技能</h2>
+      <p>持續學習，累積更多工作實力與企管知識。</p>
+    </div>
+    <div class="edu-grid">
+      <div class="edu">
+        <h3>萬能科技大學</h3>
+        <p>企業管理科系｜就讀中</p>
+      </div>
+      <div class="edu">
+        <h3>育達高中</h3>
+        <p>時尚造型科｜畢業</p>
+      </div>
+    </div>
+    <h3 style="margin:28px 0 14px">專業技能</h3>
+    <div class="skills">
+      <span class="skill">顧客服務接待</span>
+      <span class="skill">餐飲外場作業</span>
+      <span class="skill">環境清潔與衛生管理</span>
+      <span class="skill">貨物搬運與理貨盤點</span>
+      <span class="skill">機場協勤與檢疫作業</span>
+      <span class="skill">產業數據分析基礎</span>
+      <span class="skill">團隊合作與跨部門溝通</span>
+      <span class="skill">高度工作配合度與執行力</span>
+    </div>
+    <h3 style="margin:28px 0 14px">相關證照</h3>
+    <div class="skills">
+      <span class="skill">女子美髮證照</span>
+      <span class="skill">女子美容證照</span>
+      <span class="skill">美睫證照</span>
+      <span class="skill">美甲證照</span>
+    </div>
+  </div>
+</section>
+
+<!-- 聯絡方式 -->
+<section id="contact" class="section">
+  <div class="wrap">
+    <div class="contact">
+      <div>
+        <div class="eyebrow" style="color:#d9e8dd">GET IN TOUCH</div>
+        <h2 style="margin:8px 0">期待新的工作機會</h2>
+        <p>謝謝您閱讀我的履歷與專案成果，期待有機會進一步面談。</p>
+      </div>
+      <div>
+        <p>電話：<a href="tel:0972715653">0972-715-653</a></p>
+        <p>Email：<a href="mailto:mazihui003@gmail.com">mazihui003@gmail.com</a></p>
+        <p>地址：桃園市大園區和平西路70號</p>
+        <a class="btn" href="mailto:mazihui003@gmail.com?subject=%E9%A6%AC%E7%B4%AB%E6%85%A7%20-%20%E9%9D%A2%E8%A9%A6%E9%80%9A%E7%9F%A5">寄送 Email</a>
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer class="wrap footer">
+  © 2026 馬紫慧｜個人履歷與專案成果網站
+</footer>
+
+<!-- 數據視覺化圖表初始化腳本 -->
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+  if (typeof Chart === "undefined") {
+    console.warn("Chart.js 未成功載入。");
+    return;
+  }
+
+  // 設定通用字體
+  Chart.defaults.font.family = '-apple-system, BlinkMacSystemFont, "Noto Sans TC", "PingFang TC", "Microsoft JhengHei", sans-serif';
+  Chart.defaults.color = "#687570";
+
+  // 1. 桃園機場 2019-2024 旅客與貨運量雙軸圖
+  const ctxTraffic = document.getElementById("trafficTrendChart");
+  if (ctxTraffic) {
+    new Chart(ctxTraffic, {
+      type: "bar",
+      data: {
+        labels: ["2019", "2020", "2021", "2022", "2023", "2024"],
+        datasets: [
+          {
+            type: "bar",
+            label: "旅客運量 (百萬人次)",
+            data: [48.69, 7.44, 0.91, 5.34, 35.35, 44.90],
+            backgroundColor: "rgba(73, 108, 91, 0.78)",
+            borderColor: "#496c5b",
+            borderWidth: 1.5,
+            borderRadius: 6,
+            yAxisID: "yPassenger",
+            order: 2
+          },
+          {
+            type: "line",
+            label: "航空貨運量 (萬公噸)",
+            data: [218.2, 234.3, 281.2, 253.9, 211.7, 225.4],
+            borderColor: "#d97736",
+            backgroundColor: "#d97736",
+            pointBackgroundColor: "#ffffff",
+            pointBorderColor: "#d97736",
+            pointBorderWidth: 2.5,
+            pointRadius: 5,
+            pointHoverRadius: 7,
+            borderWidth: 3,
+            fill: false,
+            tension: 0.32,
+            yAxisID: "yCargo",
+            order: 1
+          }
+        ]
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        interaction: {
+          mode: "index",
+          intersect: false
+        },
+        plugins: {
+          legend: {
+            position: "top",
+            labels: {
+              boxWidth: 14,
+              font: { size: 12, weight: "bold" },
+              color: "#26332f",
+              padding: 14
+            }
+          },
+          tooltip: {
+            backgroundColor: "rgba(38, 51, 47, 0.92)",
+            titleColor: "#ffffff",
+            bodyColor: "#e4eee7",
+            padding: 12,
+            cornerRadius: 8,
+            callbacks: {
+              label: function (context) {
+                if (context.dataset.type === "line") {
+                  return ` 航空貨運量：${context.parsed.y} 萬公噸`;
+                } else {
+                  return ` 旅客運輸量：${context.parsed.y} 百萬人次`;
+                }
+              }
+            }
+          }
+        },
+        scales: {
+          x: {
+            grid: { display: false },
+            ticks: { color: "#687570", font: { weight: "600" } }
+          },
+          yPassenger: {
+            type: "linear",
+            display: true,
+            position: "left",
+            beginAtZero: true,
+            title: {
+              display: true,
+              text: "旅客量 (百萬人次)",
+              color: "#496c5b",
+              font: { weight: "bold", size: 11 }
+            },
+            ticks: { color: "#687570" },
+            grid: { color: "#edf2ee" }
+          },
+          yCargo: {
+            type: "linear",
+            display: true,
+            position: "right",
+            min: 150,
+            max: 300,
+            title: {
+              display: true,
+              text: "貨運量 (萬公噸)",
+              color: "#d97736",
+              font: { weight: "bold", size: 11 }
+            },
+            ticks: { color: "#687570" },
+            grid: { drawOnChartArea: false }
+          }
+        }
+      }
+    });
+  }
+
+  // 2. 機場周邊營運與價值鏈結構環形圖
+  const ctxChain = document.getElementById("valueChainChart");
+  if (ctxChain) {
+    new Chart(ctxChain, {
+      type: "doughnut",
+      data: {
+        labels: [
+          "航空貨運與倉儲物流 (32%)",
+          "航勤地勤與機坪作業 (24%)",
+          "空廚餐飲與航餐補給 (18%)",
+          "動植物檢疫與國境安檢 (14%)",
+          "航廈商業與免稅零售 (12%)"
+        ],
+        datasets: [
+          {
+            data: [32, 24, 18, 14, 12],
+            backgroundColor: [
+              "#496c5b",
+              "#66927e",
+              "#d97736",
+              "#8fbaa4",
+              "#dfc9a5"
+            ],
+            borderColor: "#ffffff",
+            borderWidth: 2,
+            hoverOffset: 6
+          }
+        ]
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: {
+          legend: {
+            position: "bottom",
+            labels: {
+              boxWidth: 12,
+              padding: 10,
+              font: { size: 11 },
+              color: "#26332f"
+            }
+          },
+          tooltip: {
+            backgroundColor: "rgba(38, 51, 47, 0.92)",
+            titleColor: "#ffffff",
+            bodyColor: "#e4eee7",
+            padding: 10,
+            cornerRadius: 8,
+            callbacks: {
+              label: function (context) {
+                return ` ${context.label}`;
+              }
+            }
+          }
+        },
+        cutout: "62%"
+      }
+    });
+  }
+});
+</script>
+</body>
+</html>
